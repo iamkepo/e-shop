@@ -1,46 +1,96 @@
+import webpack from 'webpack';
+
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES'
+    ? {
+        router: {
+            base: '/3d-headphones/'
+        }
+    }
+    : {};
+
 export default {
-  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'e-shop',
-    htmlAttrs: {
-      lang: 'en'
+    mode: 'spa',
+    /*
+     ** Headers of the page
+     */
+    head: {
+        title: '3D Headphones Configurator',
+        meta: [
+            { charset: 'utf-8' },
+            {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1'
+            },
+            {
+                hid: 'description',
+                name: 'description',
+                content: process.env.npm_package_description || ''
+            }
+        ],
+        link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }]
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+    ...routerBase,
+    /*
+     ** Source directory
+     */
+    srcDir: 'src',
+    /*
+     ** Customize the progress-bar color
+     */
+    loading: { color: '#000000' },
+    /*
+     ** Global CSS
+     */
+    css: ['~/assets/scss/styles.scss'],
+    /*
+     ** Plugins to load before mounting the App
+     */
+    plugins: [{ src: '~/plugins/sayHello', ssr: false }],
+    /*
+     ** Nuxt.js dev-modules
+     */
+    buildModules: [],
+    /*
+     ** Nuxt.js modules
+     */
+    modules: [
+        '@nuxtjs/vuetify',
+        [
+            'nuxt-compress',
+            {
+                gzip: {
+                    cache: true
+                },
+                brotli: {
+                    threshold: 10240
+                }
+            }
+        ]
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+    /*
+     ** Build configuration
+     */
+    build: {
+        /*
+         ** You can extend webpack config here
+         */
+        extend(config, ctx) {
+            config.plugins.push(new webpack.ProvidePlugin({
+                THREE: 'three'
+            }));
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-  ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-  ],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
-}
+            // Run ESLint on save
+            if (ctx.isDev && ctx.isClient) {
+                config.module.rules.push({
+                    enforce: 'pre',
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    exclude: /(node_modules)/
+                    // options: {
+                    //     fix: true
+                    // }
+                });
+            }
+        }
+    }
+};
