@@ -41,7 +41,7 @@ export default {
     /*
      ** Global CSS
      */
-    css: ['~/assets/scss/styles.scss'],
+    css: ['~/assets/css/main.css','~/assets/scss/styles.scss'],
     /*
      ** Plugins to load before mounting the App
      */
@@ -49,7 +49,9 @@ export default {
     /*
      ** Nuxt.js dev-modules
      */
-    buildModules: [],
+    buildModules: [
+        '@nuxt/postcss8',
+    ],
     /*
      ** Nuxt.js modules
      */
@@ -74,7 +76,17 @@ export default {
         /*
          ** You can extend webpack config here
          */
+        //analyze: true,
+        postcss: {
+            plugins: {
+                tailwindcss: {},
+                autoprefixer: {},
+            },
+        },
         extend(config, ctx) {
+            // if (ctx.isClient){
+            //     config.optimization.splitChunks.maxSize = 200000;
+            // }
             config.plugins.push(new webpack.ProvidePlugin({
                 THREE: 'three'
             }));
