@@ -7,7 +7,7 @@
             absolute
             color="black"
         >
-            <span class="body-2">Made with ❤️ by Osorina Irina 🚀</span>
+            <span class="body-2">Made with ❤️ by imakepo 🚀</span>
         </v-app-bar>
 
         <v-content>

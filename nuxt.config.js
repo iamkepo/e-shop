@@ -3,7 +3,7 @@ import webpack from 'webpack';
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES'
     ? {
         router: {
-            base: '/3d-headphones/'
+            base: '/e-shop/'
         }
     }
     : {};
@@ -14,7 +14,7 @@ export default {
      ** Headers of the page
      */
     head: {
-        title: '3D Headphones Configurator',
+        title: 'E Shop',
         meta: [
             { charset: 'utf-8' },
             {

@@ -1,11 +1,10 @@
 {
-    "name": "3d-headphones-configurator",
+    "name": "e-shop",
     "version": "1.0.0",
-    "description": "3D Headphones Configurator with Three.js",
-    "author": "osorina <official.osorina@gmail.com>",
+    "description": "E Shop Configurator with Three.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/osorina/3D-headphones"
+        "url": "https://github.com/iamkepo/e-shop"
     },
     "keywords": [
         "3d nuxt",
