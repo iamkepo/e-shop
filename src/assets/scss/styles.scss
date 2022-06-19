@@ -1,14 +1,4 @@
-body, html {
-    height: 100vh;
-    overflow: hidden !important;
-}
 
-:focus {
-    outline:none;
-    border: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
 
 .scene {
     cursor: grab;
@@ -19,7 +9,7 @@ body, html {
 }
 
 .coverdiv {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     top: 0;

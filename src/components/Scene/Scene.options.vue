@@ -77,6 +77,7 @@
 
 <script>
 export default {
-    props: ['autoRotate', 'showWireframes']
+    props: ['autoRotate', 'showWireframes'],
+    mounted(){}
 };
 </script>

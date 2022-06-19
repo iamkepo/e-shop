@@ -1,6 +1,6 @@
 <template>
     <div ref="container" class="scene coverdiv">
-        <SceneOptions
+        <SceneOptions v-if="id"
             v-show="isLoaded"
             :autoRotate="autoRotate"
             :showWireframes="showWireframes"
@@ -24,6 +24,7 @@ import SceneOptions from './Scene.options';
 
 export default {
     components: { SceneOptions },
+    props: ["id"],
     data() {
         return {
             model: {},
@@ -51,6 +52,7 @@ export default {
 
     mounted() {
         const { autoRotate } = this;
+        this.showWireframes = this.id ? false : true;
         this.scene = SceneInit({ rootEl: this.$refs.container, autoRotate });
 
         this.loadModel();
@@ -143,7 +145,7 @@ export default {
         loadModel() {
             this.isLoaded = false;
 
-            this.scene.loadModel('model/scene.gltf', (model) => {
+            this.scene.loadModel(this.id ? './model/scene.gltf' : '../model/scene.gltf', (model) => {
                 model.name = 'headphones';
 
                 // Iterator through the model's children
