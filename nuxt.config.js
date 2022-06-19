@@ -45,7 +45,7 @@ export default {
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: [{ src: '~/plugins/sayHello', ssr: false }],
+    plugins: [],
     /*
      ** Nuxt.js dev-modules
      */
