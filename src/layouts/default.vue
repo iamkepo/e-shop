@@ -1,14 +1,12 @@
 <template>
     <v-app>
-        <v-app-bar
-            app
-            dark
-            dense
-            absolute
-            color="black"
-        >
-            <span class="body-2">Made with ❤️ by imakepo 🚀</span>
-        </v-app-bar>
+        
+        <div class="h-20 w-screen flex items-center justify-center">
+            <div class="h-full w-3/4 bg-black flex items-center ">
+                <h1 class="text-white">E Shop</h1>
+            </div>
+        </div>
+
 
         <v-content>
             <nuxt/>

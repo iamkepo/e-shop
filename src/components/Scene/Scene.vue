@@ -1,6 +1,6 @@
 <template>
     <div ref="container" class="scene coverdiv">
-        <SceneOptions v-if="id"
+        <SceneOptions v-if="!id"
             v-show="isLoaded"
             :autoRotate="autoRotate"
             :showWireframes="showWireframes"
